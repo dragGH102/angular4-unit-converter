@@ -1,0 +1,27 @@
+<form (ngSubmit)="convert()" *ngIf="units" #form="ngForm">
+    <div>
+        From:
+        <input
+                ngModel
+                name="source"
+                required
+                #source="ngModel"
+                pattern="^([0-9]*[.])?[0-9]+ (in|IN|m|M|yd|YD)$"
+                placeholder="1 m / 1 in / 1 yd"
+                (keyup)="parseSourceUnit(source)"
+        />
+        <div *ngIf="source.errors" class="error">
+            &nbsp;
+            <span *ngIf="source.dirty && source.errors.required">Field is required</span>
+            <span *ngIf="source.errors.pattern">Invalid value</span>
+        </div>
+    </div>
+    <div>
+        To:
+        <select [(ngModel)]="to" name="to">
+            <option *ngFor="let u of units;" [ngValue]="u">{{u}}</option>
+        </select>
+    </div>
+    <div><input type="submit" value="Convert" [disabled]="!canSubmit(source)" /></div>
+</form>
+<div>Result: {{result}}</div>
