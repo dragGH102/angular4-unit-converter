@@ -2,7 +2,6 @@
 A simple `Unit converter` in Angular 4
 
 - tests
-- 
 - easy to extend
 
 # RUN THE APP
